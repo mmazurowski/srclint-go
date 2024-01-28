@@ -1,0 +1,28 @@
+version: 1
+
+# Missing at least one item from this list results with exit code 1
+required:
+  - ".gitignore"
+  - "package.json"
+  - "package.lock"
+  - "renovate.json"
+  - "serverless.yml"
+  - "srclint.yml"
+  - "jest-config.js"
+  - "tsconfig.json"
+  - "CODEOWNERS"
+
+# If source code file does not meet at least one item from this list results with exit code 2
+structure:
+  - "src/handlers/get-user-http/handler.ts"
+  - "src/handlers/update-user-**/handler.ts"
+  - "src/handlers/**/index.ts"
+  - "src/handlers/**/config/index.ts"
+  - "src/handlers/**/validation/*.ts" # Whitelist any file with extension
+  - "src/helpers/**" # Whitelist anything inside directory
+
+# Don't bother with checking following directories
+ignore:
+  - ".circleci"
+  - ".idea"
+  - "ignore-me"

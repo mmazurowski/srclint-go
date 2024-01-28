@@ -1,0 +1,10 @@
+version: 1
+
+required:
+  - srclint.yml
+
+structure:
+  - "src/handlers/**/config/index.ts"
+
+ignore:
+  - ".circleci"
