@@ -34,3 +34,7 @@ ignore:
 ### Error Codes
 1. Missing required file
 2. Source code structure failed validation
+
+## Roadmap:
+1. Detect errors and suggest change based on string similarity between allowed and failing paths.
+2. Add --fix command to handle case from #1
