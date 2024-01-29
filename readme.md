@@ -1,6 +1,18 @@
 # srclint - source code consistency helper
 Goal of this project is to keep consistent and concise codebase spread across many repositories. 
 
+Philosophy:
+1. Define required files (such as dependency locks, test runner configs, etc)
+2. Define shape of source code by convenient yaml notation
+3. Ignore directories that hold no value for consistency (docs, assets, misc)
+4. Run in CI/CD to make sure your changes comply with expected standard
+
+**When binary is executed it should produce output similar to the following**
+
+![Run result example](assets/doc-1.png "Run result")
+
+___
+
 ## How to use
 ```shell
 srclint .
