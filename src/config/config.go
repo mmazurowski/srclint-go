@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"srclint/src/errors"
+	"srclint/src/util"
 
 	"gopkg.in/yaml.v3"
 )
@@ -13,6 +14,15 @@ type RawConfig struct {
 	Structure []string `yaml:"structure"`
 	Required  []string `yaml:"required"`
 	Ignore    []string `yaml:"ignore"`
+}
+
+func CreateEmpty() RawConfig {
+	return RawConfig{
+		Version:   1,
+		Structure: make([]string, 0),
+		Required:  make([]string, 0),
+		Ignore:    make([]string, 0),
+	}
 }
 
 func ReadConfig(path string) (config *RawConfig, configError error) {
@@ -30,4 +40,21 @@ func ReadConfig(path string) (config *RawConfig, configError error) {
 	}
 
 	return &configContent, nil
+}
+
+// WriteConfig Creates srclint.yml if not exist in given path.
+func WriteConfig(cfn RawConfig, path string) {
+	info, fileErr := os.Stat(path)
+
+	if fileErr == nil && info.Size() > 0 {
+		return
+	}
+
+	content, err := yaml.Marshal(cfn)
+
+	util.CheckExit(err, 1)
+
+	err = os.WriteFile(path, content, 0644)
+
+	util.CheckExit(err, 1)
 }
